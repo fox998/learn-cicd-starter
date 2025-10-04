@@ -16,7 +16,7 @@ func Test_GetAPIKey(t *testing.T) {
 		"no auth header": {
 			headers:  map[string][]string{},
 			expected: "",
-			isErr:    false,
+			isErr:    true,
 		},
 		"malformed auth header": {
 			headers:  map[string][]string{"Authorization": {"malformed"}},
@@ -35,7 +35,7 @@ func Test_GetAPIKey(t *testing.T) {
 			apiKey, err := GetAPIKey(test.headers)
 			isError := err != nil
 			if isError != test.isErr {
-				t.Fatalf("expected no error value, is errror expected %v, got %v", test.isErr, err)
+				t.Fatalf("unexpected error value, is errror expected: [%v], got [%#v]", test.isErr, err)
 			}
 
 			diff := cmp.Diff(test.expected, apiKey)
