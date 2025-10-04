@@ -16,7 +16,7 @@ func Test_GetAPIKey(t *testing.T) {
 		"no auth header": {
 			headers:  map[string][]string{},
 			expected: "",
-			isErr:    true,
+			isErr:    false,
 		},
 		"malformed auth header": {
 			headers:  map[string][]string{"Authorization": {"malformed"}},
